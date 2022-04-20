@@ -1,4 +1,4 @@
-package ma.octo.springksqldb;
+package ma.octo.springksqldb.utils;
 
 import io.confluent.ksql.api.client.Row;
 import lombok.extern.slf4j.Slf4j;
