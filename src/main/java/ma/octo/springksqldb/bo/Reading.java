@@ -1,8 +1,12 @@
 package ma.octo.springksqldb.bo;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class Reading {
     private String id;
     private String timestamp;

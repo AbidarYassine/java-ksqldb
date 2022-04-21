@@ -1,0 +1,7 @@
+ksql:
+  host: localhost
+  port: 8088
+
+db:
+  changelog-path: classpath:db/changeLog/
+
