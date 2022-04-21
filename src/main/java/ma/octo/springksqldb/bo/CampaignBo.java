@@ -2,6 +2,7 @@ package ma.octo.springksqldb.bo;
 
 import lombok.Getter;
 import lombok.Setter;
+import ma.octo.springksqldb.aspect.annotations.MaterializedView;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,6 +11,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Table(name = "campaigns")
+@MaterializedView
 public class CampaignBo implements Serializable {
 
     @Id

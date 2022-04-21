@@ -12,7 +12,7 @@ import java.util.concurrent.CompletableFuture;
 
 @Component
 @RequiredArgsConstructor
-public abstract class KaSqlApi {
+public class KaSqlApi {
     /*
      * Create Drop Terminate Statement
      * */
@@ -25,7 +25,8 @@ public abstract class KaSqlApi {
     CompletableFuture<ExecuteStatementResult> executeStatement(String sql) {
         return client.executeStatement(sql);
     }
-    BatchedQueryResult executeQuery(String sql){
+
+    public BatchedQueryResult executeQuery(String sql) {
         return client.executeQuery(sql);
     }
 

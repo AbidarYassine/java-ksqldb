@@ -1,19 +1,7 @@
-spring:
-  application:
-    name: duyo-api
-  datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:6875/duyodb}
-    username: duyodev
-    password: duyodev
-    hikari:
-      connection-timeout: 60000
-      maximum-pool-size: 20
-  jpa:
-    database: POSTGRESQL
-    show-sql: true
-  sql:
-    init:
-      platform: postgres
-  config:
-    activate:
-      on-profile: dev
+ksql:
+  host: localhost
+  port: 8088
+
+db:
+  changelog-path: classpath:db/changeLog/
+

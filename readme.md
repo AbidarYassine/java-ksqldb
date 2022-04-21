@@ -12,7 +12,7 @@ Start the environment=
 
 ## ****Run ksqlDB CLI=****
 
-`docker exec -it ksqldb ksql http=//0.0.0.0=8084`
+`docker exec -it ksqldb ksql http=//0.0.0.0:8088`
 
 <aside>
 💡 **KSQL** is the streaming SQL engine that enables real-time-data-processing
@@ -334,9 +334,9 @@ CREATE SOURCE CONNECTOR SOURCE_MYSQL_03 WITH (
 'database.user' = 'debezium',
 'database.password' = 'dbz',
 'database.server.name' = 'duyo',
-'table.whitelist' = 'demo.campaigns,demo.users,demo.comments',
+'table.whitelist' = 'campaigns,users,comments',
 'database.history.kafka.bootstrap.servers' = 'kafka:29092',
-'database.history.kafka.topic' = 'dbhistory.demo' ,
+'database.history.kafka.topic' = 'dbhistory.duyo' ,
 'include.schema.changes' = 'false',
 'transforms'= 'unwrap,extractkey',
 'transforms.unwrap.type'= 'io.debezium.transforms.ExtractNewRecordState',
