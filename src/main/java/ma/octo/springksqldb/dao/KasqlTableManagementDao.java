@@ -9,4 +9,5 @@ import java.util.Optional;
 @Repository
 public interface KasqlTableManagementDao extends JpaRepository<KasqlTableManagement, Long> {
     Optional<KasqlTableManagement> findByFileName(String tableName);
+    Optional<KasqlTableManagement> findByHashFile(String hashFile);
 }

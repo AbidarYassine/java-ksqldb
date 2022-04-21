@@ -3,5 +3,6 @@ ksql:
   port: 8088
 
 db:
-  changelog-path: classpath:db/changeLog/
+  changelog-path: src/main/resources/db
+  changelog-folder-name: db
 

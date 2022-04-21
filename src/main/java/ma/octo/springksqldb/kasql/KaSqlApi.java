@@ -22,7 +22,7 @@ public class KaSqlApi {
     String sql = "CREATE STREAM ORDERS (ORDER_ID BIGINT, PRODUCT_ID VARCHAR, USER_ID VARCHAR)"
             + "WITH (KAFKA_TOPIC='orders', VALUE_FORMAT='json');";
     */
-    CompletableFuture<ExecuteStatementResult> executeStatement(String sql) {
+    public CompletableFuture<ExecuteStatementResult> executeStatement(String sql) {
         return client.executeStatement(sql);
     }
 

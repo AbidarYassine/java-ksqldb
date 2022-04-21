@@ -12,7 +12,7 @@ Start the environment=
 
 ## ****Run ksqlDB CLI=****
 
-`docker exec -it ksqldb ksql http=//0.0.0.0:8088`
+`docker exec -it ksqldb ksql http://0.0.0.0:8088`
 
 <aside>
 💡 **KSQL** is the streaming SQL engine that enables real-time-data-processing
@@ -268,73 +268,14 @@ We can also create joins between tables
     }
 }
 ```
-
-```
-CREATE SOURCE CONNECTOR SOURCE_PSQL WITH (
-      'connector.class'= 'io.debezium.connector.postgresql.PostgresConnector', 
-        'database.hostname'= 'localhost',  
-        'database.port'= '15432', 
-        'database.user'= 'duyodev', 
-        'database.password'= 'duyodev', 
-        'database.dbname' = 'postgres', 
-        'database.server.name'= 'postgres',
-        'slot.name'= 'herodotus_slot',
-        'table.include.list'= 'public.campaigns',
-        'publication.autocreate.mode'= 'filtered',
-        'key.converter'= 'io.confluent.connect.avro.AvroConverter',
-        'key.converter.schema.registry.url'= 'http://schema-registry:8081',
-        'value.converter'= 'io.confluent.connect.avro.AvroConverter',
-        'value.converter.schema.registry.url'= 'http://schema-registry:8081',
-        'plugin.name'= 'pgoutput'
-    );
-  ```
-
-
-
-CREATE SOURCE CONNECTOR customers_reader WITH (
-'connector.class' = 'io.debezium.connector.postgresql.PostgresConnector',
-'database.hostname' = 'postgres',
-'database.port' = '5432',
-'database.user' = 'duyodev',
-'database.password' = 'duyodev',
-'database.dbname' = 'campaigns',
-'database.server.name' = 'duyo',
-'table.whitelist' = 'public.campaigns, public.comments, public.users',
-'transforms' = 'unwrap',
-'transforms.unwrap.type' = 'io.debezium.transforms.ExtractNewRecordState',
-'transforms.unwrap.drop.tombstones' = 'false',
-'transforms.unwrap.delete.handling.mode' = 'rewrite'
-);
-
-```
-CREATE SOURCE CONNECTOR SOURCE_PSQL WITH (
-    'connector.class'= 'io.debezium.connector.postgresql.PostgresConnector',
-'database.hostname'= 'postgres',
-'database.port'= '5432',
-'database.user'= 'duyodev',
-'database.password'= 'duyodev',
-'database.dbname'= 'duyodb',
-'plugin.name'= 'pgoutput',
-'database.history.kafka.bootstrap.servers' = 'kafka=29092',
-'database.server.name'= 'postgres',
-'table.include.list'= 'public.campaigns,public.users,public.comments',
-'key.converter'= 'io.confluent.connect.avro.AvroConverter',
-'key.converter.schema.registry.url'= 'http=//schema-registry=8081',
-'value.converter'= 'io.confluent.connect.avro.AvroConverter',
-'value.converter.schema.registry.url'= 'http=//schema-registry=8081'
-    );
-  ```
-
-
-
-CREATE SOURCE CONNECTOR SOURCE_MYSQL_03 WITH (
+CREATE SOURCE CONNECTOR SOURCE_MYSQL_1 WITH (
 'connector.class' = 'io.debezium.connector.mysql.MySqlConnector',
 'database.hostname' = 'mysql',
 'database.port' = '3306',
 'database.user' = 'debezium',
 'database.password' = 'dbz',
 'database.server.name' = 'duyo',
-'table.whitelist' = 'campaigns,users,comments',
+'table.whitelist' = 'duyo.campaigns,duyo.users,duyo.comments',
 'database.history.kafka.bootstrap.servers' = 'kafka:29092',
 'database.history.kafka.topic' = 'dbhistory.duyo' ,
 'include.schema.changes' = 'false',
@@ -346,3 +287,5 @@ CREATE SOURCE CONNECTOR SOURCE_MYSQL_03 WITH (
 'value.converter'= 'io.confluent.connect.avro.AvroConverter',
 'value.converter.schema.registry.url'= 'http://schema-registry:8081'
 );
+
+docker exec -it mysql bash -c 'mysql -u root -p duyo'
