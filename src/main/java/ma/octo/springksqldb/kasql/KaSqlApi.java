@@ -3,10 +3,9 @@ package ma.octo.springksqldb.kasql;
 import io.confluent.ksql.api.client.BatchedQueryResult;
 import io.confluent.ksql.api.client.Client;
 import io.confluent.ksql.api.client.ExecuteStatementResult;
+import io.confluent.ksql.api.client.StreamedQueryResult;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -28,6 +27,10 @@ public class KaSqlApi {
 
     public BatchedQueryResult executeQuery(String sql) {
         return client.executeQuery(sql);
+    }
+
+    public CompletableFuture<StreamedQueryResult> streamQuery(String sql) {
+        return client.streamQuery(sql);
     }
 
 /*

@@ -1,13 +1,10 @@
-package ma.octo.springksqldb.utils;
+package ma.octo.springksqldb.reactive;
 
 import io.confluent.ksql.api.client.Row;
-import lombok.extern.slf4j.Slf4j;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
-@Slf4j
-public class RowSubscriber<T> implements Subscriber<Row> {
-
+public class RowSubscriber  implements Subscriber<Row> {
     private Subscription subscription;
 
     public RowSubscriber() {
