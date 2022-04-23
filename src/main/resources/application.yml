@@ -6,3 +6,21 @@ db:
   changelog-path: src/main/resources/db
   changelog-folder-name: db
 
+spring:
+  kafka:
+  bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:127.0.0.1:9092}
+  consumer:
+    auto-offset-reset: earliest
+    group-id: ${SPRING_KAFKA_CONSUMER_GROUP_ID:group-1}
+    key-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+    value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
+    max-poll-records: 1
+    fetch-max-wait: 36000
+    enable-auto-commit: false
+    client-id: example
+  jaas:
+    enabled: true
+  listener:
+    poll-timeout: 1800000
+    concurrency: 1
+    ack-mode: manual_immediate

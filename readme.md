@@ -275,7 +275,7 @@ CREATE SOURCE CONNECTOR SOURCE_MYSQL_1 WITH (
 'database.user' = 'debezium',
 'database.password' = 'dbz',
 'database.server.name' = 'duyo',
-'table.whitelist' = 'duyo.campaigns,duyo.users,duyo.comments',
+'table.whitelist' = 'duyo.campaigns,duyo.users,',duyo.comments
 'database.history.kafka.bootstrap.servers' = 'kafka:29092',
 'database.history.kafka.topic' = 'dbhistory.duyo' ,
 'include.schema.changes' = 'false',

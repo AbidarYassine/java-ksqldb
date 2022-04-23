@@ -1,9 +1,11 @@
 package ma.octo.springksqldb.reactive;
 
 import io.confluent.ksql.api.client.Row;
+import lombok.extern.slf4j.Slf4j;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
+@Slf4j
 public class RowSubscriber  implements Subscriber<Row> {
     private Subscription subscription;
 
@@ -12,7 +14,7 @@ public class RowSubscriber  implements Subscriber<Row> {
 
     @Override
     public synchronized void onSubscribe(Subscription subscription) {
-        System.out.println("Subscriber is subscribed.");
+        log.info("Subscriber is subscribed.");
         this.subscription = subscription;
 
         // Request the first row
@@ -21,8 +23,8 @@ public class RowSubscriber  implements Subscriber<Row> {
 
     @Override
     public synchronized void onNext(Row row) {
-        System.out.println("Received a row!");
-        System.out.println("Row: " + row.values());
+        log.info("Received a row!");
+        log.info("Row: " + row.values());
 
         // Request the next row
         subscription.request(1);
@@ -30,11 +32,11 @@ public class RowSubscriber  implements Subscriber<Row> {
 
     @Override
     public synchronized void onError(Throwable t) {
-        System.out.println("Received an error: " + t);
+        log.info("Received an error: " + t);
     }
 
     @Override
     public synchronized void onComplete() {
-        System.out.println("Query has ended.");
+        log.info("Query has ended.");
     }
 }
