@@ -24,3 +24,5 @@ spring:
     poll-timeout: 1800000
     concurrency: 1
     ack-mode: manual_immediate
+server:
+  port: 8087

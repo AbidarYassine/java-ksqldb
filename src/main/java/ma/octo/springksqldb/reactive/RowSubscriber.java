@@ -5,11 +5,18 @@ import lombok.extern.slf4j.Slf4j;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Slf4j
-public class RowSubscriber  implements Subscriber<Row> {
+public class RowSubscriber implements Subscriber<Row> {
+
+    List<String> data;
+    private boolean completed = false;
     private Subscription subscription;
 
-    public RowSubscriber() {
+    public RowSubscriber(List<String> data) {
+        this.data = data;
     }
 
     @Override
@@ -25,7 +32,7 @@ public class RowSubscriber  implements Subscriber<Row> {
     public synchronized void onNext(Row row) {
         log.info("Received a row!");
         log.info("Row: " + row.values());
-
+        data.add(row.values().toString());
         // Request the next row
         subscription.request(1);
     }
@@ -38,5 +45,9 @@ public class RowSubscriber  implements Subscriber<Row> {
     @Override
     public synchronized void onComplete() {
         log.info("Query has ended.");
+    }
+
+    public List<String> getData() {
+        return data;
     }
 }

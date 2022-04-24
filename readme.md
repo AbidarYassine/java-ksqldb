@@ -12,7 +12,7 @@ Start the environment=
 
 ## ****Run ksqlDB CLI=****
 
-`docker exec -it ksqldb ksql http://0.0.0.0:8088`
+`docker exec -it ksqldb ksql http=//0.0.0.0=8088`
 
 <aside>
 💡 **KSQL** is the streaming SQL engine that enables real-time-data-processing
@@ -154,10 +154,10 @@ CHANGES;
 +-----------+-------------+-----------+----------+-----------------+------------+
 | 0
 9
-=
-20
-=
-15 | 190 | Wiam | Mossalli | WIAM
+    =
+    20
+        =
+        15 | 190 | Wiam | Mossalli | WIAM
 @example.com |
 great |
 ^ CQuery
@@ -228,7 +228,7 @@ CHANGES;
 ```jsx
 SELECT
 TIMESTAMPTOSTRING(WINDOWSTART, 'yyyy-MM-dd
-HH=mm=ss
+HH = mm = ss
 ') AS WINDOW_START_TS,
 FIRST_NAME,
     COUNT_CLUBS
@@ -249,10 +249,10 @@ We can also create joins between tables
 ```jsx
 {
     'ksql'
-=
-    'SELECT TIMESTAMPTOSTRING(WINDOWSTART, '
+        =
+        'SELECT TIMESTAMPTOSTRING(WINDOWSTART, '
     yyyy - MM - dd
-    HH=mm=ss
+    HH = mm = ss
     ')
     AS
     WINDOW_START_TS, FIRST_NAME, COUNT_CLUBS
@@ -260,23 +260,24 @@ We can also create joins between tables
     RATINGS_CLUBS_PER_15MIN;
     ',
     'streamProperties'
-=
-    {
-        'ksql.streams.auto.offset.reset'
-    =
-        'earliest'
-    }
+        =
+        {
+            'ksql.streams.auto.offset.reset'
+            =
+            'earliest'
+}
 }
 ```
-CREATE SOURCE CONNECTOR SOURCE_MYSQL_1 WITH (
+
+CREATE SOURCE CONNECTOR SOURCE_MY WITH (
 'connector.class' = 'io.debezium.connector.mysql.MySqlConnector',
 'database.hostname' = 'mysql',
 'database.port' = '3306',
 'database.user' = 'debezium',
 'database.password' = 'dbz',
 'database.server.name' = 'duyo',
-'table.whitelist' = 'duyo.campaigns,duyo.users,',duyo.comments
-'database.history.kafka.bootstrap.servers' = 'kafka:29092',
+'table.whitelist' = 'duyo.campaigns,duyo.users,duyo.comments',
+'database.history.kafka.bootstrap.servers' = 'kafka=29092',
 'database.history.kafka.topic' = 'dbhistory.duyo' ,
 'include.schema.changes' = 'false',
 'transforms'= 'unwrap,extractkey',
@@ -285,7 +286,48 @@ CREATE SOURCE CONNECTOR SOURCE_MYSQL_1 WITH (
 'transforms.extractkey.field'= 'id',
 'key.converter'= 'org.apache.kafka.connect.storage.StringConverter',
 'value.converter'= 'io.confluent.connect.avro.AvroConverter',
-'value.converter.schema.registry.url'= 'http://schema-registry:8081'
+'value.converter.schema.registry.url'= 'http=//schema-registry=8081'
 );
 
 docker exec -it mysql bash -c 'mysql -u root -p duyo'
+
+CREATE TABLE NUMBER_OF_TESTS AS
+SELECT ID, COUNT(1) AS COUNT
+FROM STUDENTS
+WINDOW TUMBLING(SIZE 1 SECOND)
+GROUP BY ID;
+
+CREATE TABLE count_table AS
+SELECT ID,COUNT(*) AS COUNT
+FROM USERS
+WINDOW TUMBLING(SIZE 1 SECOND)
+GROUP BY ID;
+
+
+
+CREATE TABLE NUMBER_OF_TESTS AS
+SELECT ID, COUNT(1) AS COUNT
+FROM STUDENTS
+WINDOW TUMBLING(SIZE 1 SECOND)
+GROUP BY ID;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
